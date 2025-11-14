@@ -19,7 +19,7 @@ class _WeatherAppState extends State<WeatherApp> {
   Widget build(BuildContext context) {
     return _useMaterial
         ? MaterialApp(
-            title: 'Kiểm tra thời tiết AI',
+            title: 'Check weather AI',
             theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
             home: WeatherScreen(
               useMaterial: _useMaterial,
@@ -32,7 +32,7 @@ class _WeatherAppState extends State<WeatherApp> {
             debugShowCheckedModeBanner: false,
           )
         : CupertinoApp(
-            title: 'Kiểm tra thời tiết AI',
+            title: 'Check weather AI',
             home: WeatherScreen(
               useMaterial: _useMaterial,
               onDesignSystemChanged: (bool useMaterial) {
@@ -67,17 +67,17 @@ class _WeatherScreenState extends State<WeatherScreen> {
   bool _isChecking = false;
 
   final List<String> _statusSequence = [
-    'Tìm vị trí...',
-    'Độ ẩm...',
-    'Nhiệt độ...',
-    'Tốc độ gió...',
-    'Mây...',
+    'Find location...',
+    'Humidity...',
+    'Temperature...',
+    'Wind speed...',
+    'Cloudy...',
     'Done',
   ];
 
   Future<void> _checkWeather() async {
     if (_locationController.text.trim().isEmpty) {
-      _showValidationError('Vui lòng nhập tên địa điểm');
+      _showValidationError('Please enter location name');
       return;
     }
 
@@ -120,7 +120,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         TextField(
           controller: _locationController,
           decoration: const InputDecoration(
-            hintText: 'enter location name',
+            hintText: 'Enter location name',
             border: OutlineInputBorder(),
           ),
           enabled: !_isChecking,
@@ -128,7 +128,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         const SizedBox(height: 16),
         ElevatedButton(
           onPressed: _isChecking ? null : _checkWeather,
-          child: Text(_isChecking ? 'Đang kiểm tra...' : 'kiểm tra'),
+          child: Text(_isChecking ? 'Checking...' : 'Check'),
         ),
         const SizedBox(height: 24),
         if (_isChecking) ...[
@@ -146,13 +146,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
       children: [
         CupertinoTextField(
           controller: _locationController,
-          placeholder: 'enter location name',
+          placeholder: 'Enter location name',
           enabled: !_isChecking,
         ),
         const SizedBox(height: 16),
         CupertinoButton.filled(
           onPressed: _isChecking ? null : _checkWeather,
-          child: Text(_isChecking ? 'Đang kiểm tra...' : 'kiểm tra'),
+          child: Text(_isChecking ? 'Checking...' : 'Check'),
         ),
         const SizedBox(height: 24),
         if (_isChecking) ...[
@@ -174,7 +174,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   Widget _buildMaterialAppContent() {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Kiểm tra thời tiết AI'),
+        title: const Text('Check weather AI'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Padding(
@@ -214,7 +214,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
   Widget _buildCupertinoAppContent() {
     return CupertinoPageScaffold(
       navigationBar: const CupertinoNavigationBar(
-        middle: Text('Kiểm tra thời tiết AI'),
+        middle: Text('Check weather AI'),
       ),
       child: SafeArea(
         child: Column(
@@ -273,7 +273,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Thông báo'),
+            title: const Text('Alert'),
             content: Text(message),
             actions: [
               TextButton(
@@ -289,7 +289,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         context: context,
         builder: (BuildContext context) {
           return CupertinoAlertDialog(
-            title: const Text('Thông báo'),
+            title: const Text('Alert'),
             content: Text(message),
             actions: [
               CupertinoDialogAction(
@@ -309,7 +309,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: const Text('Nhìn ra ngoài cửa sổ đi'),
+            title: const Text('Look out the window'),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
@@ -324,7 +324,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
         context: context,
         builder: (BuildContext context) {
           return CupertinoAlertDialog(
-            title: const Text('Nhìn ra ngoài cửa sổ đi'),
+            title: const Text('Look out the window'),
             actions: [
               CupertinoDialogAction(
                 onPressed: () => Navigator.of(context).pop(),
